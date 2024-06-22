@@ -21,5 +21,6 @@ setup(
     install_requires=[
         "requests",
         "jmespath"
-    ]
+    ],
+    url='https://github.com/protdb/uniprot_meta_tool'
 )
