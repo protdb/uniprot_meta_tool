@@ -1,0 +1,4 @@
+.venv
+.idea
+dist
+uniprot_meta_tool.egg-info
