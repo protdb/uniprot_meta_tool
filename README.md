@@ -3,6 +3,8 @@
 this tool is designed to be useful and simple interface for [UniProt.org](https://uniprot.org)
 knowlege base witch can  be used to simply get protein metadata by its ID
 
+**NOTE:** this package is in early stage of development so be careful!
+
 ## Examples
 
 ```
