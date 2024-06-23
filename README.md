@@ -5,6 +5,16 @@ knowlege base witch can  be used to simply get protein metadata by its ID
 
 **NOTE:** this package is in early stage of development so be careful!
 
+## installation
+
+as simple as possible:
+
+```shell
+pip install uniprot-meta-tool
+```
+
+only dependencies are `requests` and `jmespath`
+
 ## Examples
 
 ```
@@ -30,6 +40,18 @@ returns list of biological processes from keywords.
 
 get_pathways(uniprot_data: UniprotData) -> List[str]:
 returns list of pathways (from Reactome DB using UniProt cross-reference)    
+```
+
+utility to enrich dataframes (requires Pandas to be installed):
+
+```python
+from uniprot_meta_tool.dataframe import enrich_df
+
+df = enrich_df(
+    df, # pandas DataFrame
+    'protein_id', # name of column contains UniProt ID
+    ['gene', 'protein_name', 'organism'] # list of parameters that should be added
+)
 ```
 
 ## Raw search
