@@ -160,6 +160,8 @@ class UniprotData:
         self.subcellular_locations = self.search(
             "comments[?commentType=='SUBCELLULAR LOCATION'].subcellularLocations[*].location.value|[0]"
         )
+        if self.subcellular_locations is None:
+            self.subcellular_locations = []
         # process organism
         self.organism = Organism(
             scientific_name=self.search('organism.scientificName'),

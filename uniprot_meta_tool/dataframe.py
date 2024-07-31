@@ -11,7 +11,10 @@ enrich_params = {
     'sequence': lambda uniprot_id: UniprotData(uniprot_id).sequence,
     'molecular_functions': lambda uniprot_id: config['list_separator'].join(get_molecular_functions(uniprot_id)),
     'biological_processes': lambda uniprot_id: config['list_separator'].join(get_biological_processes(uniprot_id)),
-    'pathways': lambda uniprot_id: config['list_separator'].join(get_pathways(uniprot_id))
+    'pathways': lambda uniprot_id: config['list_separator'].join(get_pathways(uniprot_id)),
+    'subcellular_locations': lambda uniprot_id: config['list_separator'].join(
+        UniprotData(uniprot_id).subcellular_locations
+    )
 }
 
 
