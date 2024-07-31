@@ -2,15 +2,16 @@ from typing import List, Literal
 import logging
 import pandas as pd
 from uniprot_meta_tool import UniprotData, get_pathways, get_molecular_functions, get_biological_processes
+from uniprot_meta_tool.data_parser import config
 
 enrich_params = {
     'protein_name': lambda uniprot_id: UniprotData(uniprot_id).name,
     'gene': lambda uniprot_id: UniprotData(uniprot_id).genes[0],
     'organism': lambda uniprot_id: UniprotData(uniprot_id).organism.scientific_name,
     'sequence': lambda uniprot_id: UniprotData(uniprot_id).sequence,
-    'molecular_functions': lambda uniprot_id: '; '.join(get_molecular_functions(uniprot_id)),
-    'biological_processes': lambda uniprot_id: '; '.join(get_biological_processes(uniprot_id)),
-    'pathways': lambda uniprot_id: '; '.join(get_pathways(uniprot_id))
+    'molecular_functions': lambda uniprot_id: config['list_separator'].join(get_molecular_functions(uniprot_id)),
+    'biological_processes': lambda uniprot_id: config['list_separator'].join(get_biological_processes(uniprot_id)),
+    'pathways': lambda uniprot_id: config['list_separator'].join(get_pathways(uniprot_id))
 }
 
 

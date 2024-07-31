@@ -14,7 +14,7 @@ setup(
     author='Kirill Nikolsky',
     author_email='kirill.s.nikolsky@yandex.ru',
     packages=find_packages(),
-    version="0.1.1",
+    version="0.2.0",
     classifiers=[
         'Programming Language :: Python :: 3.10',
         'Operating System :: OS Independent'
