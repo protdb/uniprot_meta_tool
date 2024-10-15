@@ -1,4 +1,4 @@
-import os.path
+import os
 import json
 import gzip
 from typing import List, Optional, Dict
@@ -9,10 +9,10 @@ import requests
 import jmespath
 
 config = {
-    'meta_cache_dir': os.path.join(tempfile.gettempdir(), 'uniprot_meta'),
-    'use_cache': True,
-    'uniprot_rest_url': 'https://rest.uniprot.org/uniprotkb/{}',
-    'gzip_cache': False,
+    'meta_cache_dir': os.environ.get('UNIPROT_META_CACHE_DIR', os.path.join(tempfile.gettempdir(), 'uniprot_meta')),
+    'use_cache': os.environ.get('UNIPROT_USE_CACHE', 'true').lower() == 'true',
+    'uniprot_rest_url': os.environ.get('UNIPROT_REST_URL', 'https://rest.uniprot.org/uniprotkb/{}'),
+    'gzip_cache': os.environ.get('UNIPROT_GZIP_CACHE', 'true').lower() == 'true',
     'list_separator': '; '
 
 }
@@ -35,8 +35,6 @@ def set_config(meta_cache_dir=None, uniprot_rest_url=None, use_cache=None, gzip_
         config['gzip_cache'] = bool(gzip_cache)
     if list_separator is not None:
         config['list_separator'] = str(list_separator)
-
-
 
 
 @dataclass
@@ -79,6 +77,7 @@ class UniprotData:
     sequence: Optional[str] = ''
     comments: Optional[List[Dict]] = None
     subcellular_locations: Optional[List[str]]
+    evidence: Optional[str] = ''
 
     def search(self, query):
         return jmespath.search(query, self.raw_data)

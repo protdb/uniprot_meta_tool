@@ -73,8 +73,23 @@ set_config(
     meta_cache_dir='/your/local/folder', # default is %tmp%/uniprot_meta
     use_cache=True, # if you set it to False, module will not store retrieved info to your disk 
     #                 and will perform new HTTP request every time you create UniprotData object
-    uniprot_rest_url='https://rest.uniprot.org/uniprotkb/{}' # have no idea why you could want to change it, but you can
+    gzip_cache=True, # Cache files in Gzip archives
+    uniprot_rest_url='https://rest.uniprot.org/uniprotkb/{}', # have no idea why you could want to change it, but you can
+    list_separator='; ' # affects dataframe tools; for list values (pathways, processes, etc) value in the df will be
+    #                     joined with given string
 )
+```
+
+### Configuration using environment variables
+
+Designed specially to use in Docker containers. You can set this values in Dockerfile or with docker run command if 
+your container uses this module.
+
+```shell
+UNIPROT_META_CACHE_DIR=/path/to/directory
+UNIPROT_USE_CACHE=true
+UNIPROT_GZIP_CACHE=true
+UNIPROT_REST_URL=https://rest.uniprot.org/uniprotkb/{}
 ```
 
 ## MR and feature requests
